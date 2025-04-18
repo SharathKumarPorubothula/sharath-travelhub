@@ -1,0 +1,29 @@
+.bus-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background: white;
+  }
+  
+  .bus-info h3 {
+    margin: 0;
+    color: #e53935;
+  }
+  
+  .bus-price {
+    text-align: right;
+  }
+  
+  .bus-price button {
+    padding: 5px 10px;
+    background-color: #e53935;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
