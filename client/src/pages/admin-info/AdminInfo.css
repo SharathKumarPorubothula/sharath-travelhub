@@ -1,0 +1,44 @@
+.admin-info-page {
+    padding: 20px;
+    background-color: #f5f5f5;
+    min-height: 80vh;
+  }
+  
+  .admin-info-page h2 {
+    color: #c62828;
+    margin-bottom: 15px;
+    font-size: 26px;
+  }
+  
+  .admin-info-page p,
+  .admin-info-page ul {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  .admin-info-page ul {
+    padding-left: 20px;
+  }
+  
+  .admin-info-page form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+  }
+  
+  .admin-info-page form input {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .admin-info-page form button {
+    padding: 10px;
+    background-color: #c62828;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  

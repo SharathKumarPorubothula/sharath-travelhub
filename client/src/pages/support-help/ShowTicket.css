@@ -1,0 +1,300 @@
+.ticket-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+  }
+  
+  .ticket-title {
+    color: #2c3e50;
+    margin-bottom: 30px;
+  }
+  
+  .ticket-container {
+    perspective: 1000px;
+    margin-bottom: 30px;
+  }
+  
+  .ticket-box {
+    background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    border: 1px solid #e0e0e0;
+    transform-style: preserve-3d;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .ticket-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  }
+  
+  .ticket-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, #3498db, #9b59b6, #e74c3c, #f39c12, #2ecc71);
+  }
+  
+  .ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #ccc;
+  }
+  
+  .ticket-header h3 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 24px;
+  }
+  
+  .ticket-status {
+    background-color: #2ecc71;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .ticket-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .passenger-info, .journey-info {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .ticket-info h4 {
+    color: #3498db;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .ticket-info p {
+    margin: 8px 0;
+    color: #555;
+  }
+  
+  .total-amount {
+    font-size: 18px;
+    color: #e74c3c;
+    font-weight: bold;
+    margin-top: 15px !important;
+  }
+  
+  .ticket-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    border-top: 1px dashed #ccc;
+    gap: 20px;
+  }
+  
+  .qr-code {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+  }
+  
+  .fake-qr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .qr-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .qr-cell {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+  }
+  
+  .qr-cell.filled {
+    background-color: #2c3e50;
+  }
+  
+  .qr-text {
+    font-size: 12px;
+    color: #7f8c8d;
+    font-family: monospace;
+  }
+  
+  .terms {
+    flex: 1;
+    min-width: 250px;
+    font-size: 12px;
+    color: #7f8c8d;
+    text-align: center;
+  }
+  
+  .terms p {
+    margin: 5px 0;
+  }
+  
+  .home-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .home-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+  }
+  
+  @media (max-width: 600px) {
+    .ticket-info {
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .ticket-footer {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .qr-code {
+      margin: 0 auto 15px;
+    }
+  }
+
+
+
+  /* Add these styles to your existing ShowTicket.css */
+
+.retrieve-ticket-box {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .retrieve-ticket-box p {
+    color: #555;
+    margin-bottom: 25px;
+  }
+  
+  .ticket-retrieval-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    text-align: left;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: all 0.3s;
+  }
+  
+  .form-group input:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    outline: none;
+  }
+  
+  .error-message {
+    color: #e74c3c;
+    padding: 10px;
+    background-color: rgba(231, 76, 60, 0.1);
+    border-radius: 5px;
+    margin: 10px 0;
+  }
+  
+  .error-message.info {
+    color: #3498db;
+    background-color: rgba(52, 152, 219, 0.1);
+  }
+  
+  .retrieve-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+  }
+  
+  .retrieve-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+  }
+  
+  .alternative-options {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+  }
+  
+  .alternative-options p {
+    margin-bottom: 15px;
+    color: #7f8c8d;
+  }
+  
+  .home-btn.outline {
+    background: transparent;
+    border: 1px solid #3498db;
+    color: #3498db;
+    margin: 5px;
+    padding: 10px 20px;
+  }
+  
+  .home-btn.outline:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+    transform: translateY(-2px);
+  }

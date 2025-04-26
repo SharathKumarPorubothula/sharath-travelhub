@@ -1,25 +1,39 @@
 // server/controllers/bookingController.js
 
 import Booking from "../models/Booking.js";
-import Bus from "../models/Bus.js";
+// import Bus from "../models/Bus.js";
 
-// @desc    Create new booking
-// @route   POST /api/bookings
-// @access  Private
+
 export const createBooking = async (req, res) => {
   try {
-    const { busId, seats, totalPrice } = req.body;
+    const {  seats, passengerDetails, paymentId, totalAmount, bookingTime,user } = req.body;
 
-    if (!busId || !seats || seats.length === 0) {
+    if ( !seats?.length || !passengerDetails || !paymentId || !totalAmount) {
       return res.status(400).json({ message: "Missing booking details" });
     }
 
+    const existingBooking = await Booking.findOne({ paymentId });
+
+
+    if (existingBooking) {
+      return res.status(200).json({
+        message: "Booking already exists",
+        booking: existingBooking,
+      });
+    }
+
+    // const userid=localStorage.getItem("email");
+    // console.log("userid",userid);
+    const totalPrice=totalAmount
+
     const booking = await Booking.create({
-      user: req.user._id,
-      bus: busId,
+      user,
       seats,
+      passengerDetails,
+      paymentId,
       totalPrice,
-      paymentStatus: "paid", // you can update this based on payment gateway
+      bookingTime,
+      paymentStatus: "paid",
     });
 
     res.status(201).json(booking);
@@ -29,9 +43,8 @@ export const createBooking = async (req, res) => {
   }
 };
 
-// @desc    Get all bookings for a user
-// @route   GET /api/bookings/my
-// @access  Private
+
+
 export const getUserBookings = async (req, res) => {
   try {
     const bookings = await Booking.find({ user: req.user._id }).populate("bus");
@@ -42,9 +55,28 @@ export const getUserBookings = async (req, res) => {
   }
 };
 
-// @desc    Cancel a booking
-// @route   PUT /api/bookings/:id/cancel
-// @access  Private
+export const getBookingById = async (req, res) => {
+  const { ticketId } = req.query; // ticketId = paymentId
+
+  if (!ticketId) {
+    return res.status(400).json({ message: "paymentId (ticketId) is required" });
+  }
+
+  try {
+    const booking = await Booking.findOne({ paymentId: ticketId });
+
+    if (!booking) {
+      return res.status(404).json({ message: "Booking not found" });
+    }
+
+    res.status(200).json(booking);
+  } catch (error) {
+    console.error("Error getting booking by paymentId:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
+
 export const cancelBooking = async (req, res) => {
   try {
     const booking = await Booking.findById(req.params.id);

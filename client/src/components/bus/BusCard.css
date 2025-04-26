@@ -1,29 +1,131 @@
 .bus-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #ccc;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    background: white;
-  }
-  
-  .bus-info h3 {
-    margin: 0;
-    color: #e53935;
-  }
-  
-  .bus-price {
-    text-align: right;
-  }
-  
-  .bus-price button {
-    padding: 5px 10px;
-    background-color: #e53935;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 15px;
+  width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.bus-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.bus-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.bus-operator {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.2rem;
+}
+
+.bus-type {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.bus-card-content {
+  margin-bottom: 15px;
+}
+
+.route-info {
+  margin-bottom: 15px;
+}
+
+.route {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.city {
+  font-weight: 600;
+  color: #34495e;
+}
+
+.arrow {
+  color: #7f8c8d;
+  font-size: 1.2rem;
+}
+
+.timing-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.time-block {
+  text-align: center;
+}
+
+.time-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #7f8c8d;
+  margin-bottom: 5px;
+}
+
+.time-value {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.price-info {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.price-label {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin-right: 5px;
+}
+
+.price-value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #e74c3c;
+}
+
+.select-seats-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.select-seats-btn:hover {
+  background-color: #2980b9;
+}
+
+/* Container for multiple cards */
+.bus-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

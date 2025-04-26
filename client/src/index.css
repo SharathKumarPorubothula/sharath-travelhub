@@ -5,3 +5,7 @@ body {
     background-color: #f9f9f9;
   }
   
+  /* Add this at the top of App.css or index.css */
+/* @import "leaflet/dist/leaflet.css";
+@import "leaflet-routing-machine/dist/leaflet-routing-machine.css"; */
+

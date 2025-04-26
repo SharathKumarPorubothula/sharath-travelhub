@@ -1,0 +1,14 @@
+.saved-payments {
+    padding: 20px;
+  }
+  
+  .saved-payments h2 {
+    margin-bottom: 16px;
+  }
+  
+  .payment-method {
+    background: #eaeaea;
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+  }

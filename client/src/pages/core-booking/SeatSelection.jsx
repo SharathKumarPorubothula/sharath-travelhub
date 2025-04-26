@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import "./SeatSelection.css";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SeatSelection = () => {
+
+  const location = useLocation();
+  const { bus,date } = location.state || {};
+
   const [selectedSeats, setSelectedSeats] = useState([]);
 
   const seats = Array.from({ length: 40 }, (_, i) => i + 1);
@@ -14,9 +20,20 @@ const SeatSelection = () => {
     }
   };
 
-  const handleProceed = () => {
-    // Navigate to passenger details page or perform any action
-    alert(`You have selected seats: ${selectedSeats.join(", ")}`);
+   const navigate = useNavigate();
+   const handleProceed = () => {
+    if (selectedSeats.length === 0) {
+      alert("Please select at least one seat.");
+    }else{
+      alert("Seats selected: " + selectedSeats.join(", "));
+    }
+    navigate("/passenger-details", {
+      state: {
+        bus,
+        date,
+        selectedSeats,
+      },
+    });
   };
 
   return (

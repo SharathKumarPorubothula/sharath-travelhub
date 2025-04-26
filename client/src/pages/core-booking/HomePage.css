@@ -213,3 +213,106 @@
       padding: 1rem;
     }
   }
+
+
+
+  /* Bus Results Container */
+.bus-results {
+  margin-top: 40px;
+  padding: 0 20px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bus-results h2 {
+  font-size: 28px;
+  color: #2d3748;
+  margin-bottom: 25px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Bus List Grid */
+.bus-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+}
+
+/* Individual Bus Item */
+.bus-item {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #e2e8f0;
+}
+
+.bus-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.bus-item h3 {
+  font-size: 20px;
+  color: #1a202c;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.bus-item p {
+  color: #4a5568;
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.bus-item p:last-of-type {
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 20px;
+}
+
+/* Book Now Button */
+.bus-item button {
+  background-color: #4299e1;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s ease;
+}
+
+.bus-item button:hover {
+  background-color: #3182ce;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .bus-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .bus-results h2 {
+    font-size: 24px;
+  }
+  
+  .bus-item {
+    padding: 20px;
+  }
+}
+
+/* Empty State (optional) */
+.bus-list:empty::after {
+  content: "No buses available for this route";
+  display: block;
+  text-align: center;
+  color: #718096;
+  padding: 40px 0;
+  grid-column: 1/-1;
+}

@@ -1,0 +1,17 @@
+.profile {
+    padding: 20px;
+  }
+  
+  .profile label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 600;
+  }
+  
+  .profile input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }

@@ -14,13 +14,12 @@ export const getAllBuses = async (req, res) => {
 
 // @desc    Search buses by source, destination, and date
 export const searchBuses = async (req, res) => {
-  const { source, destination, date } = req.body;
+  const { from, to, date } = req.body;
 
   try {
     const buses = await Bus.find({
-      source: source,
-      destination: destination,
-      date: date,
+      source: from,
+      destination: to,
     });
 
     res.json(buses);

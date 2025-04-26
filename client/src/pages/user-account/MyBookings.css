@@ -1,0 +1,14 @@
+.my-bookings {
+    padding: 20px;
+  }
+  
+  .my-bookings h2 {
+    margin-bottom: 16px;
+  }
+  
+  .booking-item {
+    background: #f0f0f0;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }

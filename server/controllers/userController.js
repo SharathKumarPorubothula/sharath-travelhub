@@ -3,6 +3,8 @@
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import dotenv from "dotenv";
+dotenv.config();
 
 // Generate JWT token
 const generateToken = (id) => {
@@ -22,39 +24,63 @@ export const registerUser = async (req, res) => {
 
     const user = await User.create({ name, email, password: hashedPassword });
 
-    res.status(201).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      token: generateToken(user._id),
-    });
+    // res.status(201).json({
+    //   _id: user._id,
+    //   name: user.name,
+    //   email: user.email,
+    //   token: generateToken(user._id),
+    // });
+    res.status(201).json({message: "User registered successfully"})
   } catch (error) {
     res.status(500).json({ message: "Registration failed" });
   }
 };
 
+
+const generate= (email) => {
+  return jwt.sign({email}, "sharath", {
+    expiresIn: "30d",
+  });
+};
 // @desc    Login user
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
-
   try {
+    // Check if user exists
     const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ message: "Invalid credentials" });
+    if (!user) {
+      return res.status(401).json({ 
+        success: false,
+        message: "Invalid Email" 
+      });
+    }
 
+    // Verify password
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
+    if (!isMatch) {
+      return res.status(401).json({ 
+        success: false,
+        message: "Invalid Password" 
+      });
+    }
 
-    res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      token: generateToken(user._id),
+    // Generate JWT token
+
+const token = generate(email);
+console.log(token);
+    // Successful login response
+    res.status(200).json({
+      Token: token,
+      message: "Login successful",
     });
   } catch (error) {
-    res.status(500).json({ message: "Login failed" });
+    console.error("Login error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Server error during login",
+    });
   }
 };
-
 // @desc    Get user profile
 export const getUserProfile = async (req, res) => {
   try {

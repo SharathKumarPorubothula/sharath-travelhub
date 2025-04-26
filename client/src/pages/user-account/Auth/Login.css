@@ -1,0 +1,155 @@
+/* Login.css - With Image-Form Spacing */
+
+/* Main container */
+.login-container {
+  display: flex;
+  max-width: 1000px;
+  width: 90%;
+  margin: 20px auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  gap: 2px; /* Creates separation between image and form */
+}
+
+/* Image styling */
+.login-image {
+  width: 50%;
+  margin: 10px;
+  background: url('C:\\Users\\User\\Desktop\\SharathTravels\\client\\src\\assets\\login.png') center/cover no-repeat;
+  min-height: 500px;
+  border-radius: 10px 0 0 10px;
+}
+
+/* Form container */
+.login-form {
+  width: 50%;
+  padding: 50px 40px;
+  position: relative;
+  margin: 10px;
+}
+
+/* Accent gradient bar */
+.login-form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Form heading */
+.login-form h2 {
+  text-align: center;
+  margin: 0 0 30px 0;
+  color: #2d3748;
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: -0.5px;
+}
+
+/* Form layout */
+.login-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Input fields */
+.login-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: #4a5568;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #4a5568;
+  transition: all 0.2s ease;
+  background-color: #f8fafc;
+  box-sizing: border-box;
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: #a0aec0;
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(160, 174, 192, 0.15);
+}
+
+.login-form input::placeholder {
+  color: #a0aec0;
+  opacity: 1;
+}
+
+/* Button styling */
+.login-form button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+.login-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1);
+}
+
+.login-form button:active {
+  transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+    max-width: 400px;
+    gap: 0;
+  }
+  
+  .login-image {
+    width: calc(100% - 20px);
+    min-height: 200px;
+    border-radius: 10px 10px 0 0;
+    margin: 10px 10px 0 10px;
+  }
+  
+  .login-form {
+    width: calc(100% - 20px);
+    padding: 30px 25px;
+    margin: 0 10px 10px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-form {
+    padding: 25px 20px;
+  }
+  
+  .login-form h2 {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+  
+  .login-form input,
+  .login-form button {
+    padding: 13px 15px;
+  }
+}

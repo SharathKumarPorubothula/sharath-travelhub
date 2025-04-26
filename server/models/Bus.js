@@ -22,6 +22,6 @@ const busSchema = new mongoose.Schema({
   rating: { type: Number, default: 4.0 },
 });
 
-const Bus = mongoose.model("Bus", busSchema);
+const Bus = mongoose.model("Bus", busSchema, "bus");
 
 export default Bus;
