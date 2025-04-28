@@ -7,20 +7,25 @@ import { QRCode } from 'react-qr-code';
 const ShowTicket = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { bus, date, selectedSeats, passenger, paymentId } = location.state || {};
-  const [ticketId, setTicketId] = useState('');
+  const { bus, date, selectedSeats, passenger, paymentId,ticketId } = location.state || {};
+  const [ticket, setTicketId] = useState('');
   const [error, setError] = useState('');
   const [hasBooked, setHasBooked] = useState(false);
+  const token=localStorage.getItem("token");
 
   const handleRetrieveTicket = async (e) => {
     e.preventDefault();
-    if (!ticketId.trim()) {
+   if(!token){
+    alert("Please login to retrieve your ticket.");
+    navigate('/login');
+   }else{
+    if (!ticket.trim()) {
       setError('Please enter a valid ticket ID');
       return;
     }
     // Here you would typically make an API call to retrieve the ticket
     // For now, we'll just simulate it with a timeout
-    const ticketData = await fetch(`http://localhost:5000/api/bookings?ticketId=${ticketId}`);
+    const ticketData = await fetch(`http://localhost:5000/api/bookings?ticketId=${ticket}`);
       const response = await ticketData.json();
       console.log(response);
 
@@ -45,6 +50,7 @@ const ShowTicket = () => {
       return;
     }
 
+   }
     // setError('Retrieving ticket...'); 
     // setTimeout(() => {
     //   setError('Ticket not found. Please check your ID and try again.');
@@ -57,6 +63,7 @@ const ShowTicket = () => {
   useEffect(() => {
     const sendBookingToBackend = async () => {
       try {
+ 
         const user=localStorage.getItem("email");
         const response = await fetch('http://localhost:5000/api/bookings/', {
           method: 'POST',
@@ -67,10 +74,13 @@ const ShowTicket = () => {
             // userId: "user_id", // Replace this with actual user id
             // busId: bus._id, // Make sure bus has _id
             user: user,
+            ticketId,
             seats: selectedSeats,
             passengerDetails: passenger,
             paymentId,
             totalAmount: bus.price * selectedSeats.length,
+            Departure: bus.source,
+            Destination: bus.destination,
             bookingTime: date || new Date(),
           }),
         });
@@ -83,8 +93,8 @@ const ShowTicket = () => {
           return;
         }
   
-        const data = await response.json();
-        console.log("✅ Booking successful:", data);
+        // const data = await response.json();
+        // console.log("✅ Booking successful:", data);
       } catch (error) {
         console.error("❌ Error while booking:", error.message);
       }
@@ -94,7 +104,7 @@ const ShowTicket = () => {
       sendBookingToBackend();
       setHasBooked(true); // ensures booking happens only once
     }
-  }, [bus, passenger, selectedSeats, paymentId]);
+  }, [bus, passenger, selectedSeats, paymentId,ticketId]);
   
   
 
@@ -111,7 +121,7 @@ const ShowTicket = () => {
               <input
                 type="text"
                 id="ticketId"
-                value={ticketId}
+                value={ticket}
                 onChange={(e) => {
                   setTicketId(e.target.value);
                   setError('');
@@ -168,9 +178,12 @@ const ShowTicket = () => {
             
             <div className="journey-info">
               <h4>Journey Details</h4>
+              <p><strong>Ticket ID</strong>{ticketId}</p>
               <p><strong>Bus:</strong> {bus.name} ({bus.type})</p>
               <p><strong>Date:</strong> {new Date(date).toLocaleDateString()}</p>
               <p><strong>Seats Number:</strong> {selectedSeats.join(', ')}</p>
+              <p><strong>Departure:</strong>{bus.source}</p>
+              <p><strong>Destination:</strong>{bus.destination}</p>
               <p><strong>Payment ID:</strong> {paymentId}</p>
               <p className="total-amount"><strong>Total Paid:</strong> ₹{(bus.price * selectedSeats.length).toLocaleString('en-IN')}</p>
             </div>

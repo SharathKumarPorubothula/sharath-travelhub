@@ -19,7 +19,7 @@ const HomePage = () => {
   const handleSearch = async () => {
     const userData = localStorage.getItem("authToken");
     if(userData){
-      console.log({ from, to, date });
+      // console.log({ from, to, date });
    const response = await fetch('http://localhost:5000/api/buses/search', {
       method: 'POST',
       headers: {

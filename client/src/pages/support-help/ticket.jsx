@@ -41,6 +41,10 @@ const Ticket = () => {
                 </div>
                 <div style={styles.detailItem}>
                     <span style={styles.detailLabel}>Total Price:</span> 
+                    <span>{bookingData.ticketId}</span>
+                </div>
+                <div style={styles.detailItem}>
+                    <span style={styles.detailLabel}>Total Price:</span> 
                     <span>₹{bookingData.totalPrice}</span>
                 </div>
                 <div style={styles.detailItem}>

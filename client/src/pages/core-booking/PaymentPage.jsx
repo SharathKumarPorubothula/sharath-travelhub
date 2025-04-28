@@ -21,34 +21,36 @@ const PaymentPage = () => {
 
       const data = await response.json();
 
-      const options = {
-        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-        amount: data.amount,
-        currency: 'INR',
-        name: 'Sharath Travels',
-        description: 'Bus Ticket Payment',
-        order_id: data.id,
-        handler: function (response) {
-          alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
-          navigate('/show-ticket', {
-            state: {
-              bus,
-              date,
-              selectedSeats,
-              passenger,
-              paymentId: response.razorpay_payment_id,
-            },
-          });
-        },
-        prefill: {
-          name: passenger.name,
-          email: passenger.email,
-          contact: passenger.phone,
-        },
-        theme: {
-          color: '#3399cc',
-        },
-      };
+      // This is where you're initializing Razorpay using your Key ID
+const options = {
+  key: import.meta.env.VITE_RAZORPAY_KEY_ID, // Razorpay Key ID (Frontend only)
+  amount: data.amount, 
+  currency: 'INR',
+  name: 'Sharath Travels',
+  description: 'Bus Ticket Payment',
+  order_id: data.id,
+  handler: function (response) {
+    alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
+    navigate('/show-ticket', {
+      state: {
+        bus,
+        date,
+        selectedSeats,
+        passenger,
+        paymentId: response.razorpay_payment_id,
+      },
+    });
+  },
+  prefill: {
+    name: passenger.name,
+    email: passenger.email,
+    contact: passenger.phone,
+  },
+  theme: {
+    color: '#3399cc',
+  },
+};
+
 
       const rzp = new window.Razorpay(options);
       rzp.open();
@@ -64,6 +66,12 @@ const PaymentPage = () => {
     const randomNum = Math.floor(100000000 + Math.random() * 900000000); // 9-digit number
     return `${prefix}${randomNum}`;
   };
+  const generateTicketId = () => {
+    const prefix = 'TKT'; // TKT for Ticket
+    const randomPart = Math.floor(100000 + Math.random() * 900000); // 6 digit random number
+    const timestampPart = Date.now().toString().slice(-4); // Last 4 digits of timestamp
+    return `${prefix}${randomPart}${timestampPart}`;
+  };
   
   // ✅ Fake Payment handler
   const handleFakePayment = () => {
@@ -74,7 +82,8 @@ const PaymentPage = () => {
         date,
         selectedSeats,
         passenger,
-        paymentId: generatePaymentId()
+        paymentId: generatePaymentId(),
+        ticketId: generateTicketId()
       },
     });
   };

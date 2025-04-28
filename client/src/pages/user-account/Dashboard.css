@@ -1,23 +1,190 @@
+/* Glass Morphism Dashboard CSS */
+:root {
+  --glass: rgba(255, 255, 255, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --primary: #6C4DF6;
+  --secondary: #C74BEB;
+  --accent: #FF7D52;
+  --text: #2E2E3A;
+  --text-light: #5A5A6F;
+  --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+}
+
 .dashboard {
-    padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text);
+  background: linear-gradient(135deg, #F6F7FC 0%, #EDEFFC 100%);
+  min-height: 100vh;
+}
+
+.dashboard h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-bottom: 0.5rem;
+}
+
+.dashboard h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 2px;
+}
+
+.user-info, .booking-overview {
+  backdrop-filter: blur(16px);
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 2.5rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  transition: var(--transition);
+}
+
+.user-info:hover, .booking-overview:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.2);
+}
+
+.user-info h3, .booking-overview h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0 0 1.8rem 0;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-info h3::before {
+  content: '👤';
+  font-size: 1.4rem;
+}
+
+.booking-overview h3::before {
+  content: '📅';
+  font-size: 1.4rem;
+}
+
+.user-info p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-light);
+  margin: 0;
+}
+
+.booking-overview ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.booking-overview li {
+  background: rgba(255, 255, 255, 0.6);
+  padding: 1.8rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.booking-overview li:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(108, 77, 246, 0.15);
+}
+
+.booking-overview li::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--primary), var(--secondary));
+}
+
+.booking-overview li strong {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.no-bookings {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--text-light);
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 16px;
+  border: 2px dashed rgba(108, 77, 246, 0.3);
+  font-size: 1.1rem;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid rgba(108, 77, 246, 0.2);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Floating animation for cards */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.user-info {
+  animation: float 6s ease-in-out infinite;
+}
+
+.booking-overview {
+  animation: float 6s ease-in-out infinite 1s;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 1.5rem;
   }
   
   .dashboard h2 {
-    margin-bottom: 16px;
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 2.2rem;
   }
   
-  .dashboard-summary {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+  .user-info, .booking-overview {
+    padding: 1.8rem;
   }
   
-  .summary-card {
-    flex: 1;
-    min-width: 200px;
-    background: #f5f5f5;
-    padding: 16px;
-    border-radius: 8px;
+  .booking-overview li {
+    padding: 1.4rem;
   }
+}

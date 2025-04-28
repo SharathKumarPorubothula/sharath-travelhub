@@ -84,9 +84,53 @@ console.log(token);
 // @desc    Get user profile
 export const getUserProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select("-password");
+    const { email } = req.query;
+    const user = await User.findOne({email:email});
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
     res.json(user);
   } catch (error) {
     res.status(500).json({ message: "Error fetching profile" });
   }
 };
+
+
+
+// Get user profile
+export const getProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password"); // Exclude password
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching profile" });
+  }
+};
+
+// Update user profile
+export const updateProfile = async (req, res) => {
+  try {
+    const { name, email, OEmail } = req.body;
+
+    // Use findOne to get the single user object
+    const user = await User.findOne({ email: OEmail });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Update user fields if new values are provided
+    user.name = name || user.name;
+    user.email = email || user.email;
+
+    // Save the updated user data
+    await user.save();
+
+    res.json({ message: "Profile updated successfully" });
+  } catch (error) {
+    console.error("Error updating profile:", error); // log the error
+    res.status(500).json({ message: "Error updating profile" });
+  }
+};
+
+

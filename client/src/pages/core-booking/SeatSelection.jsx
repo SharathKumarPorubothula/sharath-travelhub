@@ -1,57 +1,59 @@
 import React, { useState } from "react";
 import "./SeatSelection.css";
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SeatSelection = () => {
-
-  const location = useLocation();
-  const { bus,date } = location.state || {};
-
+  const { bus, date } = useLocation().state || {};
   const [selectedSeats, setSelectedSeats] = useState([]);
+  const navigate = useNavigate();
 
   const seats = Array.from({ length: 40 }, (_, i) => i + 1);
 
-  const handleSeatClick = (seat) => {
-    if (selectedSeats.includes(seat)) {
-      setSelectedSeats(selectedSeats.filter((s) => s !== seat));
-    } else {
-      setSelectedSeats([...selectedSeats, seat]);
-    }
+  const toggleSeat = (seat) => {
+    setSelectedSeats(prev => 
+      prev.includes(seat) ? prev.filter(s => s !== seat) : [...prev, seat]
+    );
   };
 
-   const navigate = useNavigate();
-   const handleProceed = () => {
-    if (selectedSeats.length === 0) {
-      alert("Please select at least one seat.");
-    }else{
-      alert("Seats selected: " + selectedSeats.join(", "));
-    }
-    navigate("/passenger-details", {
-      state: {
-        bus,
-        date,
-        selectedSeats,
-      },
-    });
+  const handleProceed = () => {
+    if (!selectedSeats.length) return alert("Please select seats");
+    alert(`selected seats are ${selectedSeats}`)
+    navigate("/passenger-details", { state: { bus, date, selectedSeats } });
   };
 
   return (
-    <div className="seat-selection">
-      <h2>Select Your Seat</h2>
+    <div className="seat-app">
+      <h2>Select Seats <span className="bus-icon">🚌</span></h2>
+      
       <div className="seat-grid">
-        {seats.map((seat) => (
-          <div
+        {seats.map(seat => (
+          <div 
             key={seat}
             className={`seat ${selectedSeats.includes(seat) ? "selected" : ""}`}
-            onClick={() => handleSeatClick(seat)}
+            onClick={() => toggleSeat(seat)}
           >
-            {seat}
+            <div className="seat-shape">
+              <div className="seat-back"></div>
+              <div className="seat-base"></div>
+            </div>
+            <span className="seat-number">{seat}</span>
           </div>
         ))}
       </div>
-      <button onClick={handleProceed} className="proceed-btn">
-        Proceed
+
+      <div className="selection-info">
+        {selectedSeats.length > 0 ? (
+          <p>Selected: {selectedSeats.sort((a,b) => a-b).join(", ")}</p>
+        ) : (
+          <p className="hint">Click seats to select</p>
+        )}
+      </div>
+
+      <button 
+        className={`proceed-btn ${selectedSeats.length ? "active" : ""}`}
+        onClick={handleProceed}
+      >
+        Continue
       </button>
     </div>
   );

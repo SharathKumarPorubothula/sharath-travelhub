@@ -5,8 +5,12 @@ import {
   registerUser,
   loginUser,
   getUserProfile,
+  updateProfile
 } from "../controllers/userController.js";
 import { protect } from "../middleware/authMiddleware.js";
+
+
+// import { getProfile, updateProfile } from "../controllers/userController.js";
 
 const router = express.Router();
 
@@ -17,7 +21,12 @@ router.post("/register", registerUser);
 router.post("/login", loginUser);
 
 // Get user profile (protected route)
-router.get("/profile", protect, getUserProfile);
+router.get("/profile", getUserProfile);
+
+// router.get('/profile',  getProfile);
+router.put('/profile',updateProfile);
+
+
 
 export default router;
  

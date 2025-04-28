@@ -50,11 +50,16 @@ import busRoutes from "./routes/busRoutes.js"; // your routes
 import authRoutes from "./routes/authRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
+ // ✅ If you're using bookingRoutes.js
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true,
+}));
 
 // Connect to MongoDB
 connectDB();
@@ -67,9 +72,14 @@ app.use("/api/buses", busRoutes); // ✅ Route for buses
 app.use("/api/auth", authRoutes);
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/payment", paymentRoutes);
+// ✅ Route for user bookings
+
+
 
 // Start server
 const PORT = process.env.PORT || 5000;
+
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

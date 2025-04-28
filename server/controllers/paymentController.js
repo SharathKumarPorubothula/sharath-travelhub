@@ -4,9 +4,11 @@ import crypto from 'crypto';
 import dotenv from 'dotenv';
 dotenv.config();
 
+import Booking from '../models/Booking.js'; // ✅ If you're using Booking.js
+
 const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET
+  key_id: 'rzp_test_WQqXoTfUqSfMzI',
+  key_secret:  '7roWDk4mGRFwjgk7d5QShLSg'
 });
 
 // ✅ Create Order
@@ -46,5 +48,16 @@ export const verifyPayment = (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ message: 'Payment verification failed', error: error.message });
+  }
+};
+
+
+export const SavedPayments = async (req, res) => {
+  try {
+    const  User = req.query.email; // Get email from query parameters
+    const payments = await Booking.find({user:User});
+    res.json(payments);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching payments", error });
   }
 };
