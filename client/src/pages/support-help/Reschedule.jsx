@@ -6,7 +6,7 @@ const Reschedule = () => {
   const [ticketId, setTicketId] = useState('');
   const [newDate, setNewDate] = useState('');
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('authToken');
 
   const handleReschedule = async () => {
    if (!token) {
@@ -27,9 +27,9 @@ const Reschedule = () => {
         });
     
         if (response.ok) {
-          alert('Booking rescheduled successfully!');
+          alert(`Booking rescheduled successfully on ${newDate}`);
         } else {
-          alert('Failed to reschedule booking');
+          alert('Failed to reschedule booking. Please enter valid TicketId');
         }
       } catch (error) {
         alert('Failed to reschedule booking');
@@ -45,12 +45,12 @@ const Reschedule = () => {
       <input
         type="text"
         placeholder="Enter Ticket ID"
-        value={ticketId}
+        // value={ticketId}
         onChange={(e) => setTicketId(e.target.value)}
       />
       <input
         type="date"
-        value={newDate}
+        // value={newDate}
         onChange={(e) => setNewDate(e.target.value)}
       />
       <button onClick={handleReschedule}>Reschedule</button>

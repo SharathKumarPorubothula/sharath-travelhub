@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import BusCard from "C:\\Users\\User\\Desktop\\SharathTravels\\client\\src\\components\\bus\\BusCard.jsx";
+import './SearchResults.css'
 
 const SearchResults = () => {
   const [buses, setBuses] = useState([]);
   const [filteredBuses, setFilteredBuses] = useState([]);
   const [selectedType, setSelectedType] = useState("");
+  const [source, setSource] = useState("");
+  const [destination, setDestination] = useState("");
 
   useEffect(() => {
     const fetchBuses = async () => {
@@ -27,58 +30,82 @@ const SearchResults = () => {
   const handleFilterChange = (e) => {
     const type = e.target.value;
     setSelectedType(type);
-    setFilteredBuses(type === "" ? buses : buses.filter(bus => bus.type === type));
+    filterBuses(source, destination, type);
+  };
+
+  const handleSourceChange = (e) => {
+    const src = e.target.value;
+    setSource(src);
+    filterBuses(src, destination, selectedType);
+  };
+
+  const handleDestinationChange = (e) => {
+    const dest = e.target.value;
+    setDestination(dest);
+    filterBuses(source, dest, selectedType);
+  };
+
+  const filterBuses = (src, dest, type) => {
+    let filtered = buses;
+
+    if (src) {
+      filtered = filtered.filter(bus =>
+        bus.source.toLowerCase().includes(src.toLowerCase())
+      );
+    }
+
+    if (dest) {
+      filtered = filtered.filter(bus =>
+        bus.destination.toLowerCase().includes(dest.toLowerCase())
+      );
+    }
+
+    if (type) {
+      filtered = filtered.filter(bus => bus.type === type);
+    }
+
+    setFilteredBuses(filtered);
   };
 
   return (
     <div className="search-results">
-      {/* Filter dropdown with styled options */}
-      <div style={{ marginBottom: "20px" }}>
-        <label htmlFor="busType" style={{ marginRight: "10px", fontWeight: "500" }}>Filter by Bus Type:</label>
-        <select 
-          id="busType" 
-          value={selectedType} 
-          onChange={handleFilterChange}
-          style={{
-            padding: "8px 12px",
-            borderRadius: "4px",
-            border: "1px solid #ccc",
-            backgroundColor: "#f8f8f8",
-            fontSize: "16px",
-            cursor: "pointer",
-            outline: "none",
-            width: "200px",
-            transition: "all 0.3s ease"
-          }}
-        >
-          <option value="" style={{ padding: "8px", backgroundColor: "#f8f8f8" }}>All Types</option>
-          <option 
-            value="AC Sleeper" 
-            style={{ 
-              padding: "8px", 
-              backgroundColor: "#f8f8f8",
-              borderBottom: "1px solid #eee"
-            }}
+      {/* Source and Destination Inputs */}
+      <div className="search-filters">
+        <div className="filter-row">
+          <p>Search here</p>
+          <input
+            type="text"
+            placeholder="Enter Source City"
+            value={source}
+            onChange={handleSourceChange}
+            className="filter-input"
+          />
+          <input
+            type="text"
+            placeholder="Enter Destination City"
+            value={destination}
+            onChange={handleDestinationChange}
+            className="filter-input"
+          />
+        </div>
+
+        {/* Filter by Bus Type Dropdown */}
+        <div className="filter-row">
+          <label htmlFor="busType" className="filter-label">
+            Filter by Bus Type:
+          </label>
+          <select
+            id="busType"
+            value={selectedType}
+            onChange={handleFilterChange}
+            className="filter-select"
           >
-            AC Sleeper
-          </option>
-          <option 
-            value="Volvo Multi-Axle" 
-            style={{ 
-              padding: "8px", 
-              backgroundColor: "#f8f8f8",
-              borderBottom: "1px solid #eee"
-            }}
-          >
-            Volvo Multi-Axle
-          </option>
-          <option 
-            value="Non-AC Seater" 
-            style={{ padding: "8px", backgroundColor: "#f8f8f8" }}
-          >
-            Non-AC Seater
-          </option>
-        </select>
+            <option value="">All Types</option>
+            <option value="AC Sleeper">AC Sleeper</option>
+            <option value="Volvo Multi-Axle">Volvo Multi-Axle</option>
+            <option value="Non-AC Seater">Non-AC Seater</option>
+          </select>
+        </div>
       </div>
 
       {/* Bus List */}
@@ -86,22 +113,9 @@ const SearchResults = () => {
         {filteredBuses.length > 0 ? (
           filteredBuses.map((bus) => <BusCard key={bus._id} bus={bus} />)
         ) : (
-          <p>No buses found for selected type.</p>
+          <p className="no-buses">No buses found matching your criteria.</p>
         )}
       </div>
-
-      {/* Optional: Add hover effects */}
-      <style>
-        {`
-          #busType:hover {
-            border-color: #888;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
-          }
-          #busType option:hover {
-            background-color: #e0e0e0 !important;
-          }
-        `}
-      </style>
     </div>
   );
 };

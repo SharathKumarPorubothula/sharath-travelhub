@@ -10,8 +10,6 @@ import {
 import { protect } from "../middleware/authMiddleware.js";
 
 
-// import { getProfile, updateProfile } from "../controllers/userController.js";
-
 const router = express.Router();
 
 // Register new user

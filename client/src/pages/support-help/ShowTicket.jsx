@@ -11,7 +11,7 @@ const ShowTicket = () => {
   const [ticket, setTicketId] = useState('');
   const [error, setError] = useState('');
   const [hasBooked, setHasBooked] = useState(false);
-  const token=localStorage.getItem("token");
+  const token=localStorage.getItem("authToken");
 
   const handleRetrieveTicket = async (e) => {
     e.preventDefault();
@@ -23,8 +23,7 @@ const ShowTicket = () => {
       setError('Please enter a valid ticket ID');
       return;
     }
-    // Here you would typically make an API call to retrieve the ticket
-    // For now, we'll just simulate it with a timeout
+   
     const ticketData = await fetch(`http://localhost:5000/api/bookings?ticketId=${ticket}`);
       const response = await ticketData.json();
       console.log(response);
@@ -51,10 +50,7 @@ const ShowTicket = () => {
     }
 
    }
-    // setError('Retrieving ticket...'); 
-    // setTimeout(() => {
-    //   setError('Ticket not found. Please check your ID and try again.');
-    // }, 1500);
+  
   };
 
 
@@ -71,8 +67,6 @@ const ShowTicket = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            // userId: "user_id", // Replace this with actual user id
-            // busId: bus._id, // Make sure bus has _id
             user: user,
             ticketId,
             seats: selectedSeats,
@@ -93,10 +87,9 @@ const ShowTicket = () => {
           return;
         }
   
-        // const data = await response.json();
-        // console.log("✅ Booking successful:", data);
+       
       } catch (error) {
-        console.error("❌ Error while booking:", error.message);
+        console.error(" Error while booking:", error.message);
       }
     };
   
@@ -107,7 +100,6 @@ const ShowTicket = () => {
   }, [bus, passenger, selectedSeats, paymentId,ticketId]);
   
   
-
   if (!bus || !passenger || !selectedSeats || !paymentId) {
     return (
       <div className="ticket-page">
@@ -121,7 +113,7 @@ const ShowTicket = () => {
               <input
                 type="text"
                 id="ticketId"
-                value={ticket}
+                // value={ticket}
                 onChange={(e) => {
                   setTicketId(e.target.value);
                   setError('');
@@ -138,13 +130,7 @@ const ShowTicket = () => {
           </form>
           
           <div className="alternative-options">
-            {/* <p>Can't find your ticket?</p> */}
-            {/* <button 
-              className="home-btn outline" 
-              onClick={() => navigate('/contact')}
-            >
-              Contact Support
-            </button> */}
+            
             <button 
               className="home-btn outline" 
               onClick={() => navigate('/')}

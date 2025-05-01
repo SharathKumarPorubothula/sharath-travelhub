@@ -19,8 +19,17 @@ const email=localStorage.getItem("email")
     const randomNumber = Math.floor(1000000000 + Math.random() * 9000000000); // 10-digit random number
     const randomProvider = upiProviders[Math.floor(Math.random() * upiProviders.length)];
   
-    return `${randomNumber}@${randomProvider}`;
+    const numberString = randomNumber.toString();
+  
+    // Hide the first 5 digits
+    const hiddenNumber = numberString
+      .split('')
+      .map((digit, index) => (index < 5 ? '*' : digit))
+      .join('');
+  
+    return `${hiddenNumber}@${randomProvider}`;
   }
+  
 
   function generateRandomFutureDate() {
     const today = new Date();
@@ -44,35 +53,27 @@ const email=localStorage.getItem("email")
     for (let i = 0; i < 15; i++) {
       cardNumber += Math.floor(Math.random() * 10); // Random digits
     }
-    
-    return cardNumber.replace(/(.{4})/g, '$1 ').trim(); // Format 4-4-4-4
+  
+    // Now hide the first 8 digits
+    let hiddenCardNumber = cardNumber
+      .split('')
+      .map((digit, index) => {
+        if (index < 8) {
+          return '*';
+        }
+        return digit;
+      })
+      .join('');
+  
+    return hiddenCardNumber.replace(/(.{4})/g, '$1 ').trim(); // Format like 4-4-4-4
   }
+  
 
   return (
     <div className="saved-payments">
       <h2>Saved Payment Methods</h2>
 
-      {/* {payments.length === 0 ? (
-        <p>No saved payment methods.</p>
-      ) : (
-        payments.map((payment) => (
-          <div key={payment.id} className="payment-card">
-            {payment.type === "Card" ? (
-              <>
-                <p><strong>Type:</strong> {payment.type}</p>
-                <p><strong>Card Number:</strong> {payment.cardNumber}</p>
-                <p><strong>Card Holder:</strong> {payment.cardHolder}</p>
-                <p><strong>Expiry:</strong> {payment.expiry}</p>
-              </>
-            ) : (
-              <>
-                <p><strong>Type:</strong> {payment.type}</p>
-                <p><strong>UPI ID:</strong> {payment.upiId}</p>
-              </>
-            )}
-          </div>
-        ))
-      )} */}
+     
       {payments.map((payment) => (
     <div key={payment.paymentId} className="payment-card">
       <div className="payment-type">
@@ -99,10 +100,7 @@ const email=localStorage.getItem("email")
         </p>
       </div>
       
-      {/* <div className="payment-actions">
-        <button className="payment-btn payment-btn-outline">Remove</button>
-        <button className="payment-btn payment-btn-primary">Use This</button>
-      </div> */}
+     
     </div>
   ))}
     </div>

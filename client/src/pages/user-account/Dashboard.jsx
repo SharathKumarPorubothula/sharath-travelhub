@@ -60,7 +60,7 @@ const Dashboard = () => {
             {bookings.map((booking) => (
               <li key={booking.paymentId}>
                 {booking.Departure} → {booking.Destination} on {new Date(booking.bookingTime).toLocaleDateString()} 
-                - <strong>Seat Number:</strong> {booking.seats}
+                - <strong>Seat Number:</strong> {booking.seats.map(e=>e+",")}
               </li>
             ))}
           </ul>

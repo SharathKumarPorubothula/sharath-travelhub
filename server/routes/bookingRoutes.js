@@ -20,18 +20,9 @@ router.post("/", createBooking);
 // Get all bookings for logged-in user
 // protect,
 router.get("/my",  getUserBookings);
-
 router.get("/", getBookingById);
-
 router.post('/reschedule', rescheduleBooking);
-
-// router.get('/my-bookings', authMiddleware, getMyBookings);
 router.get('/my-bookings', getMyBookings);
 
-
-// Cancel a specific booking
-// router.put("/:id/cancel", protect, cancelBooking);
-
-// router.post('/cancel', cancelBooking);
 
 export default router;

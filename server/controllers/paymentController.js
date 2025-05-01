@@ -4,14 +4,14 @@ import crypto from 'crypto';
 import dotenv from 'dotenv';
 dotenv.config();
 
-import Booking from '../models/Booking.js'; // ✅ If you're using Booking.js
+import Booking from '../models/Booking.js'; 
 
 const razorpay = new Razorpay({
   key_id: 'rzp_test_WQqXoTfUqSfMzI',
   key_secret:  '7roWDk4mGRFwjgk7d5QShLSg'
 });
 
-// ✅ Create Order
+// Create Order
 export const createOrder = async (req, res) => {
   try {
     const { amount } = req.body;
@@ -29,7 +29,7 @@ export const createOrder = async (req, res) => {
   }
 };
 
-// ✅ Verify Payment
+// Verify Payment
 export const verifyPayment = (req, res) => {
   try {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;

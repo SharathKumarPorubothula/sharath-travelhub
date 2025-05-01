@@ -7,7 +7,7 @@ const CancelTicket = () => {
   const [ticketId, setTicketId] = useState('');
   const navigate = useNavigate();
   const handleCancel = async () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('authToken');
     if(!token) {
       alert('Please log in to cancel a ticket.');
 navigate('/login');
@@ -18,9 +18,9 @@ navigate('/login');
         const response = await axios.post(`http://localhost:5000/api/bookings/cancel`, { ticketId });
         // console.log('Response from server:', response.data); // Debugging line
         if(response){
-          alert('Booking cancelled successfully!');
+          alert(`Booking cancelled successfully. The ticketId is ${ticketId} `);
         }else{
-          alert('Failed to cancel booking!');
+          alert(`Failed to cancel booking Please enter valid Ticket ID `);
         }
       } catch (error) {
         alert('Failed to cancel booking');
@@ -35,7 +35,7 @@ navigate('/login');
       <input
         type="text"
         placeholder="Enter Ticket ID"
-        value={ticketId}
+        // value={ticketId}
         onChange={(e) => setTicketId(e.target.value)}
       />
       <button onClick={handleCancel}>Cancel Ticket</button>

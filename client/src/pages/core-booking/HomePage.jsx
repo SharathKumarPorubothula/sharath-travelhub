@@ -5,6 +5,7 @@ import images from 'C:\\Users\\User\\Desktop\\SharathTravels\\client\\src\\asset
 import { useNavigate } from "react-router-dom";
 // import TomTomMap from "../../TomTomMap";
 import OSRMRouteMap from "../../assets/OSMMaps"; // Adjust the import path as needed
+import { useRef } from "react";
 
  
 
@@ -14,7 +15,7 @@ const HomePage = () => {
   const [date, setDate] = useState("");
   const [buses, setBuses] = useState([]); 
 
-
+  const bottomButtonRef = useRef(null);
  
   const handleSearch = async () => {
     const userData = localStorage.getItem("authToken");
@@ -28,7 +29,9 @@ const HomePage = () => {
       body: JSON.stringify({ from, to, date }),
     });
     const data = await response.json();
-    setBuses(data);   
+    setBuses(data);  
+    bottomButtonRef.current.scrollIntoView({ behavior: "smooth" });
+    
   }else{
     alert("Please login to search for buses.");
     navigate('/login');
@@ -57,8 +60,14 @@ const HomePage = () => {
                 <input 
                   type="text" 
                   placeholder="Departure City" 
-                  value={from}
-                  onChange={(e) => setFrom(e.target.value)}
+                  // value={from}
+                  // onChange={(e) => setFrom(e.target.value)}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    const capitalized = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+                    setFrom(capitalized);
+                  }}
+                  // style={{textTransform: 'capitalize'}}
                 />
               </div>
               
@@ -66,8 +75,13 @@ const HomePage = () => {
                 <input 
                   type="text" 
                   placeholder="Destination City" 
-                  value={to}
-                  onChange={(e) => setTo(e.target.value)}
+                  // value={to}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    const capitalized = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+                    setTo(capitalized);
+                  }}
+                
                 />
               </div>
               
@@ -82,15 +96,19 @@ const HomePage = () => {
                 />
               </div>
               
-              <button onClick={handleSearch} className="search-btn">
+              <button onClick={handleSearch}  className="search-btn">
                 <FaSearch /> Find Buses
               </button>
             </div>
           </div>
 
+          <div style={{ padding: '10px', border: '1px solid #ccc', borderRadius: '8px', marginBottom: '10px'}}>
+  <strong>Note:</strong> Only the routes listed below are available. Please select from them.
+</div>
+
           {/* <TomTomMap /> */}
           {/* <OSRMRouteMap startLocation="Hyderabad" endLocation="Pune" /> */}
-         {(from && to)?<div>{(from=="Pune" && to=="Mysore")&&<OSRMRouteMap startLocation="Pune" endLocation="Mysore" />}
+         {/* {(from && to)?<div>{(from=="Pune" && to=="Mysore")&&<OSRMRouteMap startLocation="Pune" endLocation="Mysore" />}
          {(from=="Hyderabad" && to=="Ahmedabad")&&<OSRMRouteMap startLocation="Hyderabad" endLocation="Ahmedabad" />}
          {(from=="Hyderabad" && to=="Chennai")&&<OSRMRouteMap startLocation="Hyderabad" endLocation="Chennai" />}
          {(from=="Goa" && to=="Chennai")&&<OSRMRouteMap startLocation="Goa" endLocation="Chennai" />}
@@ -100,7 +118,82 @@ const HomePage = () => {
          {(from=="Bangalore" && to=="Hyderabad")&&<OSRMRouteMap startLocation="Bangalore" endLocation="Hyderabad" />}
          {(from=="Mumbai" && to=="Bangalore")&&<OSRMRouteMap startLocation="Mumbai" endLocation="Bangalore" />}
          {(from=="Chennai" && to=="Mumbai")&&<OSRMRouteMap startLocation="Chennai" endLocation="Mumbai" />}
-         {(from=="Delhi" && to=="Pune")&&<OSRMRouteMap startLocation="Delhi" endLocation="Pune" />}</div>:<OSRMRouteMap startLocation="Hyderabad" endLocation="Pune" />}
+         {(from=="Delhi" && to=="Pune")&&<OSRMRouteMap startLocation="Delhi" endLocation="Pune" />}
+         {(from=="Hyderabad" && to=="Mysore")&&<OSRMRouteMap startLocation="Hyderabad" endLocation="Mysore" />}
+         </div>:<OSRMRouteMap startLocation="Hyderabad" endLocation="Pune" />} */}
+
+
+
+{(from && to) ? (
+  <div>
+    {(from=="Pune" && to=="Mysore") && <OSRMRouteMap startLocation="Pune" endLocation="Mysore" />}
+    {(from=="Pune" && to=="Ahmedabad") && <OSRMRouteMap startLocation="Pune" endLocation="Ahmedabad" />}
+    {(from=="Pune" && to=="Coimbatore") && <OSRMRouteMap startLocation="Pune" endLocation="Coimbatore" />}
+    {(from=="Pune" && to=="Delhi") && <OSRMRouteMap startLocation="Pune" endLocation="Delhi" />}
+    {(from=="Pune" && to=="Goa") && <OSRMRouteMap startLocation="Pune" endLocation="Goa" />}
+    {(from=="Pune" && to=="Mumbai") && <OSRMRouteMap startLocation="Pune" endLocation="Mumbai" />}
+    
+    {(from=="Hyderabad" && to=="Ahmedabad") && <OSRMRouteMap startLocation="Hyderabad" endLocation="Ahmedabad" />}
+    {(from=="Hyderabad" && to=="Chennai") && <OSRMRouteMap startLocation="Hyderabad" endLocation="Chennai" />}
+    {(from=="Hyderabad" && to=="Delhi") && <OSRMRouteMap startLocation="Hyderabad" endLocation="Delhi" />}
+    {(from=="Hyderabad" && to=="Mysore") && <OSRMRouteMap startLocation="Hyderabad" endLocation="Mysore" />}
+    {(from=="Hyderabad" && to=="Bangalore") && <OSRMRouteMap startLocation="Hyderabad" endLocation="Bangalore" />}
+    {(from=="Hyderabad" && to=="Mumbai") && <OSRMRouteMap startLocation="Hyderabad" endLocation="Mumbai" />}
+    
+    {(from=="Goa" && to=="Chennai") && <OSRMRouteMap startLocation="Goa" endLocation="Chennai" />}
+    {(from=="Goa" && to=="Coimbatore") && <OSRMRouteMap startLocation="Goa" endLocation="Coimbatore" />}
+    {(from=="Goa" && to=="Hyderabad") && <OSRMRouteMap startLocation="Goa" endLocation="Hyderabad" />}
+    {(from=="Goa" && to=="Delhi") && <OSRMRouteMap startLocation="Goa" endLocation="Delhi" />}
+    {(from=="Goa" && to=="Mumbai") && <OSRMRouteMap startLocation="Goa" endLocation="Mumbai" />}
+    {(from=="Goa" && to=="Bangalore") && <OSRMRouteMap startLocation="Goa" endLocation="Bangalore" />}
+    {(from=="Goa" && to=="Mysore") && <OSRMRouteMap startLocation="Goa" endLocation="Mysore" />}
+    
+    {(from=="Mysore" && to=="Delhi") && <OSRMRouteMap startLocation="Mysore" endLocation="Delhi" />}
+    {(from=="Mysore" && to=="Bangalore") && <OSRMRouteMap startLocation="Mysore" endLocation="Bangalore" />}
+    {(from=="Mysore" && to=="Goa") && <OSRMRouteMap startLocation="Mysore" endLocation="Goa" />}
+    {(from=="Mysore" && to=="Chennai") && <OSRMRouteMap startLocation="Mysore" endLocation="Chennai" />}
+    {(from=="Mysore" && to=="Mumbai") && <OSRMRouteMap startLocation="Mysore" endLocation="Mumbai" />}
+    {(from=="Mysore" && to=="Coimbatore") && <OSRMRouteMap startLocation="Mysore" endLocation="Coimbatore" />}
+    {(from=="Mysore" && to=="Hyderabad") && <OSRMRouteMap startLocation="Mysore" endLocation="Hyderabad" />}
+    {(from=="Mysore" && to=="Pune") && <OSRMRouteMap startLocation="Mysore" endLocation="Pune" />}
+    
+    {(from=="Coimbatore" && to=="Delhi") && <OSRMRouteMap startLocation="Coimbatore" endLocation="Delhi" />}
+    {(from=="Coimbatore" && to=="Chennai") && <OSRMRouteMap startLocation="Coimbatore" endLocation="Chennai" />}
+    {(from=="Coimbatore" && to=="Mumbai") && <OSRMRouteMap startLocation="Coimbatore" endLocation="Mumbai" />}
+    {(from=="Coimbatore" && to=="Ahmedabad") && <OSRMRouteMap startLocation="Coimbatore" endLocation="Ahmedabad" />}
+    {(from=="Coimbatore" && to=="Bangalore") && <OSRMRouteMap startLocation="Coimbatore" endLocation="Bangalore" />}
+    {(from=="Coimbatore" && to=="Mysore") && <OSRMRouteMap startLocation="Coimbatore" endLocation="Mysore" />}
+    
+    {(from=="Bangalore" && to=="Chennai") && <OSRMRouteMap startLocation="Bangalore" endLocation="Chennai" />}
+    {(from=="Bangalore" && to=="Coimbatore") && <OSRMRouteMap startLocation="Bangalore" endLocation="Coimbatore" />}
+    {(from=="Bangalore" && to=="Ahmedabad") && <OSRMRouteMap startLocation="Bangalore" endLocation="Ahmedabad" />}
+    {(from=="Bangalore" && to=="Mysore") && <OSRMRouteMap startLocation="Bangalore" endLocation="Mysore" />}
+    {(from=="Bangalore" && to=="Delhi") && <OSRMRouteMap startLocation="Bangalore" endLocation="Delhi" />}
+    {(from=="Bangalore" && to=="Mumbai") && <OSRMRouteMap startLocation="Bangalore" endLocation="Mumbai" />}
+    {(from=="Bangalore" && to=="Hyderabad") && <OSRMRouteMap startLocation="Bangalore" endLocation="Hyderabad" />}
+    
+    {(from=="Mumbai" && to=="Hyderabad") && <OSRMRouteMap startLocation="Mumbai" endLocation="Hyderabad" />}
+    {(from=="Mumbai" && to=="Mysore") && <OSRMRouteMap startLocation="Mumbai" endLocation="Mysore" />}
+    {(from=="Mumbai" && to=="Goa") && <OSRMRouteMap startLocation="Mumbai" endLocation="Goa" />}
+    {(from=="Mumbai" && to=="Delhi") && <OSRMRouteMap startLocation="Mumbai" endLocation="Delhi" />}
+    
+    {(from=="Chennai" && to=="Goa") && <OSRMRouteMap startLocation="Chennai" endLocation="Goa" />}
+    {(from=="Chennai" && to=="Delhi") && <OSRMRouteMap startLocation="Chennai" endLocation="Delhi" />}
+    {(from=="Chennai" && to=="Bangalore") && <OSRMRouteMap startLocation="Chennai" endLocation="Bangalore" />}
+    {(from=="Chennai" && to=="Mumbai") && <OSRMRouteMap startLocation="Chennai" endLocation="Mumbai" />}
+    {(from=="Chennai" && to=="Ahmedabad") && <OSRMRouteMap startLocation="Chennai" endLocation="Ahmedabad" />}
+    {(from=="Chennai" && to=="Hyderabad") && <OSRMRouteMap startLocation="Chennai" endLocation="Hyderabad" />}
+    {(from=="Chennai" && to=="Coimbatore") && <OSRMRouteMap startLocation="Chennai" endLocation="Coimbatore" />}
+    
+    {(from=="Delhi" && to=="Hyderabad") && <OSRMRouteMap startLocation="Delhi" endLocation="Hyderabad" />}
+    {(from=="Delhi" && to=="Goa") && <OSRMRouteMap startLocation="Delhi" endLocation="Goa" />}
+    {(from=="Delhi" && to=="Ahmedabad") && <OSRMRouteMap startLocation="Delhi" endLocation="Ahmedabad" />}
+    {(from=="Delhi" && to=="Bangalore") && <OSRMRouteMap startLocation="Delhi" endLocation="Bangalore" />}
+    {(from=="Delhi" && to=="Pune") && <OSRMRouteMap startLocation="Delhi" endLocation="Pune" />}
+  </div>
+) : (
+  <OSRMRouteMap startLocation="Hyderabad" endLocation="Pune" />
+)}
 
 
           
@@ -113,7 +206,7 @@ const HomePage = () => {
   </div>
 ) : (
             <div className="bus-results">
-              <h2>Available Buses</h2>
+              <h2 ref={bottomButtonRef}>Available Buses</h2>
               <div className="bus-list">
                 {buses.map((bus) => (
                   <div key={bus._id} className="bus-item">

@@ -1,9 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // ✅ Add this
+import { useNavigate } from "react-router-dom";
 import "./BusCard.css";
 
 const BusCard = ({ bus }) => {
-  const navigate = useNavigate(); // ✅ Initialize navigate
+  const navigate = useNavigate();
   const today = new Date();
   const date = today.toISOString().split('T')[0];
   const handleSelectSeats = () => {

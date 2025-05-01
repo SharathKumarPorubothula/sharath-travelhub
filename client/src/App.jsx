@@ -24,6 +24,10 @@ import PaymentPage from "./pages/core-booking/PaymentPage";
 import ShowTicke from "./pages/support-help/ShowTicket";
 
 import Ticket from "./pages/support-help/ticket";
+import Terms from "../src/pages/footerOptions/terms"
+import Privacy from "../src/pages/footerOptions/Privacy"
+import Help from "./pages/footerOptions/Help";
+
 
 
 import "./styles.css";
@@ -56,6 +60,12 @@ const App = () => {
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/show-ticket" element={<ShowTicke />} />
           <Route path="/ticket" element={<Ticket />} />
+
+          <Route path="/term" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/help" element={<Help />} />
+
+
 
           {/* Catch-all Route */}
         </Routes>

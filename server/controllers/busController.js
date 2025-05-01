@@ -2,7 +2,7 @@
 
 import Bus from "../models/Bus.js";
 
-// @desc    Get all buses
+//Get all buses
 export const getAllBuses = async (req, res) => {
   try {
     const buses = await Bus.find();
@@ -12,7 +12,7 @@ export const getAllBuses = async (req, res) => {
   }
 };
 
-// @desc    Search buses by source, destination, and date
+//Search buses by source, destination, and date
 export const searchBuses = async (req, res) => {
   const { from, to, date } = req.body;
 
@@ -28,7 +28,7 @@ export const searchBuses = async (req, res) => {
   }
 };
 
-// @desc    Get bus details by ID
+// Get bus details by ID
 export const getBusById = async (req, res) => {
   try {
     const bus = await Bus.findById(req.params.id);
