@@ -1,0 +1,94 @@
+/* Register Form - Spacious Vertical Layout */
+.register-form {
+  max-width: 420px;
+  margin: 60px auto;
+  padding: 40px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+  font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.register-form h2 {
+  text-align: center;
+  margin: 0 0 40px 0; /* Increased bottom margin */
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 1.8rem;
+  letter-spacing: -0.5px;
+}
+
+.form-group {
+  margin-bottom: 28px; /* Increased form group spacing */
+}
+
+.register-form label {
+  display: block;
+  margin-bottom: 12px; /* Increased label spacing */
+  color: #4a4a4a;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.register-form input {
+  width: 100%;
+  padding: 15px 18px; /* Slightly increased padding */
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: #fafafa;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  margin-bottom: 4px; /* Space between input and error */
+}
+
+/* Error Message Spacing */
+.error {
+  color: #FF5A5F;
+  font-size: 0.85rem;
+  margin: 8px 0 0 0; /* Better error message spacing */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 20px; /* Prevent layout shift */
+}
+
+/* Button Group Spacing */
+.button-group {
+  margin-top: 36px; /* Extra space before button */
+}
+
+.register-form button {
+  width: 100%;
+  padding: 16px;
+  background: #6C63FF;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+  .register-form {
+    padding: 32px 24px;
+    margin: 30px 20px;
+    border-radius: 12px;
+  }
+  
+  .register-form h2 {
+    font-size: 1.6rem;
+    margin-bottom: 32px;
+  }
+  
+  .form-group {
+    margin-bottom: 24px;
+  }
+  
+  .button-group {
+    margin-top: 32px;
+  }
+}

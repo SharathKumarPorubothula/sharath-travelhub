@@ -1,0 +1,29 @@
+.other-service-page {
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 80vh;
+  }
+  
+  .other-service-page h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #e53935;
+  }
+  
+  .other-service-page p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .other-service-page ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .other-service-page ul li {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #444;
+  }
+  
