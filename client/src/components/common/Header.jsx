@@ -68,6 +68,7 @@ const Header = () => {
               <Link to="/help/cancel-ticket" className="dropdown-item">Cancel Ticket</Link>
               <Link to="/help/reschedule" className="dropdown-item">Reschedule</Link>
               <Link to="/help/show-ticket" className="dropdown-item">Show Ticket</Link>
+              <Link to='/help/contact' className="dropdown-item">Contact Us</Link>
             </div>
           )}
         </div>

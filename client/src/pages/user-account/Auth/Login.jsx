@@ -14,13 +14,17 @@ const Login = () => {
       const user = result.user;
 
       console.log("Google User Info: ", user);
-      // You can access user info here, such as:
-      // user.email, user.displayName, user.photoURL
+      
       localStorage.setItem("authToken", user.refreshToken); // Firebase token
-      localStorage.setItem("email", user.email);
+      localStorage.setItem("emailName", user.email);
+      localStorage.setItem("userName",user.displayName);
+      
+    
 
       alert("Login successful with Google!");
       window.location.href = "/";
+
+      
     } catch (error) {
       console.error("Google login error: ", error.message);
       alert("Google Login Failed");
@@ -46,6 +50,7 @@ const Login = () => {
       alert("Login Successful");
       localStorage.setItem("authToken", result.Token);
       localStorage.setItem("email", email);
+      localStorage.setItem("userName",result.userName);
       window.location.href = "/";
     } else {
       alert(result.message);
@@ -78,6 +83,7 @@ const Login = () => {
       alert("Login Successful");
       localStorage.setItem("authToken", result.Token);
       localStorage.setItem("email", email);
+      localStorage.setItem("userName",result.userName);
       window.location.href = "/";
     } else {
       alert(result.message);
@@ -90,6 +96,9 @@ const Login = () => {
       <div className="login-form">
         <h2>Login</h2>
         <form>
+          <div className="login-div">
+
+          
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -110,17 +119,20 @@ const Login = () => {
           />
           <br />
 
-          <button type="submit" onClick={submit}>
+          <button type="submit" style={{marginTop:'20px'}} onClick={submit}>
             Login
           </button>
+
+          </div>
+          
         </form>
 
         {/* Google Login Button */}
-        <div style={{ marginTop: "20px" }}>
+        <div style={{ margin: "10px 0px" }}>
           <button onClick={handleGoogleLogin}>Login with Google</button>
         </div>
-        <p style={{color:"green"}}>---------------------------------------OR--------------------------------------</p>
-        <div style={{ marginTop: "20px" }}>
+        <p style={{color:"green", margin:'8px 0px'}}>---------------------------------------OR--------------------------------------</p>
+        <div style={{ marginTop: "0px" }}>
           <button onClick={Guest}>Guest</button>
         </div>
       </div>

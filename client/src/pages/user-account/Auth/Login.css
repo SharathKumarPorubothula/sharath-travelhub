@@ -61,7 +61,8 @@
 /* Input fields */
 .login-form label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+  margin-top: 10px;
   color: #4a5568;
   font-weight: 500;
   font-size: 14px;

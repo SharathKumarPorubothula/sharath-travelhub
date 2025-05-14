@@ -1,8 +1,5 @@
-// server/controllers/bookingController.js
 
-import e from "express";
 import Booking from "../models/Booking.js";
-// import Bus from "../models/Bus.js";
 
 
 export const createBooking = async (req, res) => {

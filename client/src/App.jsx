@@ -22,6 +22,7 @@ import SeatSelection from "./pages/core-booking/SeatSelection";
 import PassengerDetails from "./pages/core-booking/PassengerDetails";
 import PaymentPage from "./pages/core-booking/PaymentPage";
 import ShowTicke from "./pages/support-help/ShowTicket";
+import HelpCenter from './pages/support-help/HelpCenter'
 
 import Ticket from "./pages/support-help/ticket";
 import Terms from "../src/pages/footerOptions/terms"
@@ -54,6 +55,7 @@ const App = () => {
           <Route path="/help/cancel-ticket" element={<CancelTicket />} />
           <Route path="/help/reschedule" element={<Reschedule />} />
           <Route path="/help/show-ticket" element={<ShowTicket />} />
+          <Route path="/help/contact" element={<HelpCenter />} />
 
           <Route path="/select-seat" element={<SeatSelection />} />
           <Route path="/passenger-details" element={<PassengerDetails />} />

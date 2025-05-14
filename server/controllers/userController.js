@@ -6,10 +6,6 @@ import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
 dotenv.config();
 
-// Generate JWT token
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "7d" });
-};
 
 //  Register new user
 export const registerUser = async (req, res) => {
@@ -55,17 +51,18 @@ export const loginUser = async (req, res) => {
       return res.status(401).json({ 
         success: false,
         message: "Invalid Password" 
+
       });
     }
 
     // Generate JWT token
 
 const token = generate(email);
-console.log(token);
-    // Successful login response
+
     res.status(200).json({
       Token: token,
       message: "Login successful",
+      userName: user.name
     });
   } catch (error) {
     console.error("Login error:", error);
@@ -89,9 +86,6 @@ export const getUserProfile = async (req, res) => {
   }
 };
 
-
-
-// Get user profile
 export const getProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password"); // Exclude password
@@ -120,7 +114,7 @@ export const updateProfile = async (req, res) => {
     // Save the updated user data
     await user.save();
 
-    res.json({ message: "Profile updated successfully" });
+    res.json({ message: "Profile updated successfully",newUserName:user.name,newEmail:user.email });
   } catch (error) {
     console.error("Error updating profile:", error);
     res.status(500).json({ message: "Error updating profile" });
