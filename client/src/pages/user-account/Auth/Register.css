@@ -11,7 +11,7 @@
 
 .register-form h2 {
   text-align: center;
-  margin: 0 0 40px 0; /* Increased bottom margin */
+  margin: 0 0 20px 0; /* Increased bottom margin */
   color: #1a1a1a;
   font-weight: 600;
   font-size: 1.8rem;
@@ -22,9 +22,22 @@
   margin-bottom: 28px; /* Increased form group spacing */
 }
 
+.register-div{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.register-div div{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .register-form label {
   display: block;
-  margin-bottom: 12px; /* Increased label spacing */
+ /* Increased label spacing */
   color: #4a4a4a;
   font-size: 0.95rem;
   font-weight: 500;

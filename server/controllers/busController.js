@@ -1,4 +1,3 @@
-// server/controllers/busController.js
 
 import Bus from "../models/Bus.js";
 
@@ -28,14 +27,3 @@ export const searchBuses = async (req, res) => {
   }
 };
 
-// Get bus details by ID
-export const getBusById = async (req, res) => {
-  try {
-    const bus = await Bus.findById(req.params.id);
-    if (!bus) return res.status(404).json({ message: "Bus not found" });
-
-    res.json(bus);
-  } catch (error) {
-    res.status(500).json({ message: "Error fetching bus" });
-  }
-};

@@ -4,10 +4,10 @@ import express from "express";
 import {
   registerUser,
   loginUser,
-  getUserProfile,
-  updateProfile
+  updateProfile,
+  getUserProfile
 } from "../controllers/userController.js";
-import { protect } from "../middleware/authMiddleware.js";
+// import { protect } from "../middleware/authMiddleware.js";
 
 
 const router = express.Router();
@@ -18,7 +18,6 @@ router.post("/register", registerUser);
 // Login existing user
 router.post("/login", loginUser);
 
-// Get user profile (protected route)
 router.get("/profile", getUserProfile);
 
 // router.get('/profile',  getProfile);

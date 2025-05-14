@@ -23,6 +23,7 @@ connectDB();
 
 app.use(express.json()); 
 
+//api/auth/profile
 
 app.use("/api/buses", busRoutes); 
 app.use("/api/auth", authRoutes);

@@ -3,14 +3,13 @@ import "./HomePage.css";
 import { FaBus, FaSearch, FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 import images from 'C:\\Users\\User\\Desktop\\SharathTravels\\client\\src\\assets\\bus.png'
 import { useNavigate } from "react-router-dom";
-// import TomTomMap from "../../TomTomMap";
-import OSRMRouteMap from "../../assets/OSMMaps"; // Adjust the import path as needed
+import OSRMRouteMap from "../../assets/OSMMaps";
 import { useRef } from "react";
 
- 
+//  app.jsx-->Homepage.jsx-->
 
 const HomePage = () => {
-  const [from, setFrom] = useState("");
+  const [from, setFrom] = useState(""); 
   const [to, setTo] = useState("");
   const [date, setDate] = useState("");
   const [buses, setBuses] = useState([]); 

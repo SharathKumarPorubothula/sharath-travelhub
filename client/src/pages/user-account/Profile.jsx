@@ -29,9 +29,15 @@ const Profile = () => {
     e.preventDefault();
     try {
       const lemail=localStorage.getItem("email");
+      // const luser=localStorage.getItem("user");
       const updatedProfile = { ...profile, OEmail: lemail };
-      await axios.put(`http://localhost:5000/api/auth/profile`, updatedProfile);
+     const res= await axios.put(`http://localhost:5000/api/auth/profile`, updatedProfile);
+    
+
+     localStorage.setItem("email",res.data.newEmail)
+     localStorage.setItem("userName",res.data.newUserName)
       alert("Profile updated successfully!");
+      window.location.reload();
     } catch (error) {
       console.error("Error updating profile:", error);
       alert("Failed to update profile");
@@ -39,6 +45,7 @@ const Profile = () => {
   };
 
   return (
+    
     <div className="profile">
       <h2>Edit Profile</h2>
       <form onSubmit={handleSubmit}>
@@ -49,7 +56,7 @@ const Profile = () => {
             name="name" 
             value={profile.name} 
             onChange={handleChange} 
-            placeholder="Enter name" 
+            placeholder={localStorage.getItem("userName")}
             required 
           />
         </label>
@@ -61,7 +68,7 @@ const Profile = () => {
             name="email" 
             value={profile.email} 
             onChange={handleChange} 
-            placeholder="Enter email" 
+            placeholder={localStorage.getItem("email")}
             required 
           />
         </label>
