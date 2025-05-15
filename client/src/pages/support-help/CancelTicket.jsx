@@ -15,7 +15,7 @@ navigate('/login');
     }else{
       try {
         // console.log('Cancelling ticket with paymentId:', paymentId); // Debugging line
-        const response = await axios.post(`http://localhost:5000/api/bookings/cancel`, { ticketId });
+        const response = await axios.post(`https://sharath-travelhub.onrender.com/api/bookings/cancel`, { ticketId });
         // console.log('Response from server:', response.data); // Debugging line
         if(response){
           alert(`Booking cancelled successfully. The ticketId is ${ticketId} `);

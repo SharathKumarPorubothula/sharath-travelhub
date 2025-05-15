@@ -7,7 +7,7 @@ const SavedPayments = () => {
 const email=localStorage.getItem("email")
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/payment/saved-payments?email=${email}`)
+    fetch(`https://sharath-travelhub.onrender.com/api/payment/saved-payments?email=${email}`)
       .then((res) => res.json())
       .then((data) => setPayments(data))
       .catch((error) => console.error("Error fetching saved payments:", error));

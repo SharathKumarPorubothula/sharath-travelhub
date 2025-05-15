@@ -31,7 +31,7 @@ const Profile = () => {
       const lemail=localStorage.getItem("email");
       // const luser=localStorage.getItem("user");
       const updatedProfile = { ...profile, OEmail: lemail };
-     const res= await axios.put(`http://localhost:5000/api/auth/profile`, updatedProfile);
+     const res= await axios.put(`https://sharath-travelhub.onrender.com/api/auth/profile`, updatedProfile);
     
 
      localStorage.setItem("email",res.data.newEmail)

@@ -13,7 +13,7 @@ const Dashboard = () => {
   const fetchUserInfo = async () => {
     try {
       const email = localStorage.getItem("email");
-      const response = await fetch(`http://localhost:5000/api/auth/profile?email=${email}`);
+      const response = await fetch(`https://sharath-travelhub.onrender.com/api/auth/profile?email=${email}`);
       if (!response.ok) {
         throw new Error('Failed to fetch user info');
       }
@@ -27,7 +27,7 @@ const Dashboard = () => {
   const fetchUserBookings = async () => {
     try {
       const email = localStorage.getItem("email");
-      const response = await fetch(`http://localhost:5000/api/bookings/my-bookings?email=${email}`);
+      const response = await fetch(`https://sharath-travelhub.onrender.com/api/bookings/my-bookings?email=${email}`);
       if (!response.ok) {
         throw new Error('Failed to fetch bookings');
       }

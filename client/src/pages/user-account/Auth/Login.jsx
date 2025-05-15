@@ -33,7 +33,7 @@ const Login = () => {
 
   const submit = async (e) => {
     e.preventDefault();
-    var data = await fetch("http://localhost:5000/api/auth/login", {
+    var data = await fetch("https://sharath-travelhub.onrender.com/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +66,7 @@ const Login = () => {
     const email= "Psharathkumar21@gmail.com"
     const password= "Naruto@148"
 
-    var data = await fetch("http://localhost:5000/api/auth/login", {
+    var data = await fetch("https://sharath-travelhub.onrender.com/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
