@@ -17,7 +17,7 @@
 .login-image {
   width: 50%;
   margin: 10px;
-  background: url('C:\\Users\\User\\Desktop\\SharathTravels\\client\\src\\assets\\login.png') center/cover no-repeat;
+  background: url('../../../../public//assets//login.png') center/cover no-repeat;
   min-height: 500px;
   border-radius: 10px 0 0 10px;
 }

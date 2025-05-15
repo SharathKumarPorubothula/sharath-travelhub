@@ -1,9 +1,9 @@
 import React, {  useState } from "react";
 import "./HomePage.css";
 import { FaBus, FaSearch, FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
-import images from 'C:\\Users\\User\\Desktop\\SharathTravels\\client\\src\\assets\\bus.png'
+import images from '../../../public/assets/bus.png'
 import { useNavigate } from "react-router-dom";
-import OSRMRouteMap from "../../assets/OSMMaps";
+import OSRMRouteMap from "../../components/common/OSMMaps";
 import { useRef } from "react";
 
 //  app.jsx-->Homepage.jsx-->
