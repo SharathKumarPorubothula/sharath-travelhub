@@ -1,9 +1,5 @@
 {
   "homepage": ".",
-<<<<<<< HEAD
-
-=======
->>>>>>> f9d0831d810c4b7ab91bbf55c7580d6c1b5386d6
   "name": "client",
   "private": true,
   "version": "0.0.0",
