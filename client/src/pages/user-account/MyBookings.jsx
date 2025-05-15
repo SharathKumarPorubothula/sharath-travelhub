@@ -8,7 +8,7 @@ const MyBookings = () => {
     const fetchData = async () => {
       try {
         const email = localStorage.getItem("email");
-        const response = await fetch(`http://localhost:5000/api/bookings/my?email=${email}`, );
+        const response = await fetch(`https://sharath-travelhub.onrender.com/api/bookings/my?email=${email}`, );
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }

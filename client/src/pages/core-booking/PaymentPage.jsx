@@ -9,7 +9,7 @@ const PaymentPage = () => {
 
   const handlePayment = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/payment/create-order`, {
+      const response = await fetch(`https://sharath-travelhub.onrender.com/api/payment/create-order`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

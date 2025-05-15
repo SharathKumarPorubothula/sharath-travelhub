@@ -76,7 +76,7 @@ const Register = () => {
       const obj = { name, email, password, confirmPassword };
 
       try {
-        const response = await fetch('http://localhost:5000/api/auth/register', {
+        const response = await fetch('https://sharath-travelhub.onrender.com/api/auth/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(obj),
@@ -106,7 +106,7 @@ const Register = () => {
       console.log('Google User:', user);
       const defaultPassword = 'Naruto@148';
       
-      const response = await fetch('http://localhost:5000/api/auth/register', {
+      const response = await fetch('https://sharath-travelhub.onrender.com/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

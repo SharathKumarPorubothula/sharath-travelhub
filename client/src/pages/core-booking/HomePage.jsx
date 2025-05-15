@@ -20,7 +20,7 @@ const HomePage = () => {
     const userData = localStorage.getItem("authToken");
     if(userData){
       // console.log({ from, to, date });
-   const response = await fetch('http://localhost:5000/api/buses/search', {
+   const response = await fetch('https://sharath-travelhub.onrender.com/api/buses/search', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

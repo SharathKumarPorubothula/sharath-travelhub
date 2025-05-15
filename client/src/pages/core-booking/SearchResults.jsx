@@ -12,7 +12,7 @@ const SearchResults = () => {
   useEffect(() => {
     const fetchBuses = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/buses`);
+        const response = await fetch(`https://sharath-travelhub.onrender.com/api/buses`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
