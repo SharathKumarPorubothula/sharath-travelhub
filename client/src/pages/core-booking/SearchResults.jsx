@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import BusCard from "C:\\Users\\User\\Desktop\\SharathTravels\\client\\src\\components\\bus\\BusCard.jsx";
+import BusCard from "../../components/bus/BusCard";
 import './SearchResults.css'
 
 const SearchResults = () => {
