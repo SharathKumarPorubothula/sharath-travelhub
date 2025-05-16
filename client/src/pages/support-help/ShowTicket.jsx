@@ -24,7 +24,7 @@ const ShowTicket = () => {
       return;
     }
    
-    const ticketData = await fetch(`http://localhost:5000/api/bookings?ticketId=${ticket}`);
+    const ticketData = await fetch(`https://sharath-travelhub.onrender.com/api/bookings?ticketId=${ticket}`);
       const response = await ticketData.json();
       console.log(response);
 
