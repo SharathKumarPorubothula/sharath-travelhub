@@ -44,7 +44,7 @@ const ShowTicket = () => {
     if(response){
       alert('Ticket retrieved successfully!');
       setTimeout(() => {
-        navigate('/ticket', { state: {response} });
+        navigate('/ticket11', { state: {response} });
       }, 1000);
       return;
     }
